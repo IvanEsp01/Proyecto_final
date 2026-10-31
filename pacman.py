@@ -105,7 +105,12 @@ def world():
             if tile == 1:
                 path.up()
                 path.goto(x + 10, y + 10)
-                path.dot(2, 'white')
+# Modification: Changed food shape to a triangle, color to green, and used stamp instead of dot.
+                path.shape('triangle')
+                path.color('green')
+                path.shapesize(0.5)
+                path.stamp()
+                path.color('blue')
 
 
 def move():
