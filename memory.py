@@ -19,11 +19,7 @@ tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
 
-# ==========================================
-# MODIFICACIÓN 1: Contador de pares y Writer
-# Se inicializa la variable global y el objeto
-# writer para gestionar los textos en pantalla.
-# ==========================================
+# Variables para el contador y el sistema de escritura en pantalla
 pairs_found = 0
 writer = Turtle(visible=False)
 
@@ -64,9 +60,7 @@ def tap(x, y):
         hide[mark] = False
         state['mark'] = None
         
-        # ==========================================
-        # MODIFICACIÓN 1: Incrementar contador de pares
-        # ==========================================
+        # MODIFICACIÓN 1: Incrementamos el contador de pares encontrados
         pairs_found += 1
 
 
@@ -93,16 +87,25 @@ def draw():
 
     update()
     
-    # Actualizar textos con el objeto writer
+    # Limpiamos el texto anterior para actualizar la interfaz
     writer.clear()
     
-    # ==========================================
-    # MODIFICACIÓN 1: Dibujar el contador en pantalla
-    # ==========================================
+    # MODIFICACIÓN 1: Mostrar el contador de pares en la esquina superior
     writer.up()
     writer.goto(-180, 185)
     writer.color('blue')
     writer.write(f'Pares encontrados: {pairs_found}', font=('Arial', 14, 'normal'))
+
+    # ==========================================
+    # MODIFICACIÓN 2: Mensaje de Victoria
+    # Verificamos si los 32 pares ya fueron descubiertos.
+    # Si es así, imprimimos un mensaje festivo en el centro.
+    # ==========================================
+    if pairs_found == 32:
+        writer.goto(-80, 0)
+        writer.color('green')
+        writer.write('¡Victoria!', font=('Arial', 30, 'bold'))
+        return  # Detiene el flujo del bucle de dibujo al ganar
     # ==========================================
 
     ontimer(draw, 100)
