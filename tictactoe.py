@@ -1,12 +1,9 @@
 
-"""Tic Tac Toe
-
-Descarga el código con el comando indicado previamente, ejecuta el juego, analiza el código y, una vez comprendido, 
-realizar las siguientes modificaciones:
-1. Modificar el tamaño y el color de los símbolos "X" y "O" y centrarlos.
-2. Validar si una casilla ya se encuentra ocupada.
-3. Determinar cuando juego haya terminado e indicar quién ganó o si se empató.
-
+"""Download the code using the previously indicated command, run the game, analyze the code, and once you understand it, 
+make the following modifications:
+1. Modify the size and color of the "X" and "O" symbols and center them.
+2. Validate whether a square is already occupied.
+3. Determine when the game has ended and indicate who won or if it was a tie.
 """
 
 from turtle import *
