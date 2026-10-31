@@ -45,7 +45,13 @@ def floor(value):
     return ((value + 200) // 133) * 133 - 200
 
 
-state = {'player': 0}
+
+state = {
+    'player': 0,
+    'board': {},
+    'game_over': False
+}
+
 players = [drawx, drawo]
 
 
