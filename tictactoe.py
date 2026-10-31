@@ -21,18 +21,23 @@ def grid():
     line(-200, 67, 200, 67)
 
 
+
 def drawx(x, y):
     """Draw X player."""
-    line(x, y, x + 133, y + 133)
-    line(x, y + 133, x + 133, y)
+    color('blue')
+    width(8)
+    line(x + 25, y + 25, x + 108, y + 108)
+    line(x + 25, y + 108, x + 108, y + 25)
 
 
 def drawo(x, y):
     """Draw O player."""
+    color('red')
+    width(8)
     up()
-    goto(x + 67, y + 5)
+    goto(x + 66.5, y + 24)
     down()
-    circle(62)
+    circle(42)
 
 
 def floor(value):
