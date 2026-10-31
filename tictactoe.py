@@ -1,11 +1,11 @@
 """Tic Tac Toe
 
-Exercises
+Descarga el código con el comando indicado previamente, ejecuta el juego, analiza el código y, una vez comprendido, 
+realizar las siguientes modificaciones:
+1. Modificar el tamaño y el color de los símbolos "X" y "O" y centrarlos.
+2. Validar si una casilla ya se encuentra ocupada.
+3. Determinar cuando juego haya terminado e indicar quién ganó o si se empató.
 
-1. Give the X and O a different color and width.
-2. What happens when someone taps a taken spot?
-3. How would you detect when someone has won?
-4. How could you create a computer player?
 """
 
 from turtle import *
