@@ -15,11 +15,13 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+# MODIFICACIÓN 3: Reducido a 8 números duplicados (16 fichas en total para un 4x4)
+tiles = list(range(8)) * 2
 state = {'mark': None}
-hide = [True] * 64
+# MODIFICACIÓN 3: El tablero de 4x4 tiene 16 casillas
+hide = [True] * 16
 
-# Variables para el contador y el sistema de escritura en pantalla
+# MODIFICACIÓN 1: Variables para el contador y el sistema de escritura
 pairs_found = 0
 writer = Turtle(visible=False)
 
@@ -39,12 +41,14 @@ def square(x, y):
 
 def index(x, y):
     """Convert (x, y) coordinates to tiles index."""
-    return int((x + 200) // 50 + ((y + 200) // 50) * 8)
+    # MODIFICACIÓN 3: Ajustado a 4 columnas y rango de -100 a 100
+    return int((x + 100) // 50 + ((y + 100) // 50) * 4)
 
 
 def xy(count):
     """Convert tiles count to (x, y) coordinates."""
-    return (count % 8) * 50 - 200, (count // 8) * 50 - 200
+    # MODIFICACIÓN 3: Coordenadas centradas para la cuadrícula 4x4
+    return (count % 4) * 50 - 100, (count // 4) * 50 - 100
 
 
 def tap(x, y):
@@ -71,7 +75,8 @@ def draw():
     shape(car)
     stamp()
 
-    for count in range(64):
+    # MODIFICACIÓN 3: Dibujar las 16 casillas de la cuadrícula 4x4
+    for count in range(16):
         if hide[count]:
             x, y = xy(count)
             square(x, y)
@@ -96,17 +101,12 @@ def draw():
     writer.color('blue')
     writer.write(f'Pares encontrados: {pairs_found}', font=('Arial', 14, 'normal'))
 
-    # ==========================================
-    # MODIFICACIÓN 2: Mensaje de Victoria
-    # Verificamos si los 32 pares ya fueron descubiertos.
-    # Si es así, imprimimos un mensaje festivo en el centro.
-    # ==========================================
-    if pairs_found == 32:
+    # MODIFICACIÓN 2: Mensaje de Victoria (8 pares en total para el tablero 4x4)
+    if pairs_found == 8:
         writer.goto(-80, 0)
         writer.color('green')
         writer.write('¡Victoria!', font=('Arial', 30, 'bold'))
-        return  # Detiene el flujo del bucle de dibujo al ganar
-    # ==========================================
+        return  # Detiene el bucle al ganar
 
     ontimer(draw, 100)
 
