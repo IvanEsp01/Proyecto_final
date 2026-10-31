@@ -55,15 +55,33 @@ state = {
 players = [drawx, drawo]
 
 
+
 def tap(x, y):
     """Draw X or O in tapped square."""
+    if state['game_over']:
+        return
+
+    # Check if the click is inside the board
+    if not (-200 <= x < 200 and -200 <= y < 200):
+        return
+
     x = floor(x)
     y = floor(y)
+
+    # Check if the selected square is already occupied
+    if (x, y) in state['board']:
+        return
+
     player = state['player']
     draw = players[player]
+
     draw(x, y)
+
+    # Register the occupied square
+    state['board'][(x, y)] = player
+
     update()
-    state['player'] = not player
+    state['player'] = 1 - player
 
 
 setup(420, 420, 370, 0)
