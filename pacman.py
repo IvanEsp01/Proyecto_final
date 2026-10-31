@@ -160,7 +160,8 @@ def move():
         if abs(pacman - point) < 20:
             return
 
-    ontimer(move, 100)
+# Modification: Reduced timer from 100 to 50 to double the ghosts speed.
+    ontimer(move, 50)
 
 
 def change(x, y):
