@@ -55,6 +55,27 @@ state = {
 players = [drawx, drawo]
 
 
+def check_winner(player):
+    """Check if a player has three symbols in a row."""
+    board = state['board']
+
+    winning_combinations = [
+        [(-200, -200), (-67, -200), (66, -200)],
+        [(-200, -67), (-67, -67), (66, -67)],
+        [(-200, 66), (-67, 66), (66, 66)],
+        [(-200, -200), (-200, -67), (-200, 66)],
+        [(-67, -200), (-67, -67), (-67, 66)],
+        [(66, -200), (66, -67), (66, 66)],
+        [(-200, -200), (-67, -67), (66, 66)],
+        [(66, -200), (-67, -67), (-200, 66)]
+    ]
+
+    for combination in winning_combinations:
+        if all(board.get(square) == player for square in combination):
+            return True
+
+    return False
+
 
 def tap(x, y):
     """Draw X or O in tapped square."""
@@ -81,10 +102,32 @@ def tap(x, y):
     state['board'][(x, y)] = player
 
     update()
-    state['player'] = 1 - player
+
+    # Check if the current player has won
+    if check_winner(player):
+        message = 'Player X wins!' if player == 0 else 'Player O wins!'
+        state['game_over'] = True
+
+    # Check if all squares are occupied
+    elif len(state['board']) == 9:
+        message = "It's a tie!"
+        state['game_over'] = True
+
+    else:
+        state['player'] = 1 - player
+        return
+
+    # Display the final result
+    color('black')
+    up()
+    goto(0, -235)
+    write(message, align='center', font=('Arial', 16, 'bold'))
+    update()
+
+    print(message)
 
 
-setup(420, 420, 370, 0)
+setup(500, 500, 370, 0)
 hideturtle()
 tracer(False)
 grid()
