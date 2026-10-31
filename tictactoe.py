@@ -1,3 +1,4 @@
+
 """Tic Tac Toe
 
 Descarga el código con el comando indicado previamente, ejecuta el juego, analiza el código y, una vez comprendido, 
@@ -39,11 +40,9 @@ def drawo(x, y):
     down()
     circle(42)
 
-
 def floor(value):
     """Round value down to grid with square size 133."""
-    return ((value + 200) // 133) * 133 - 200
-
+    return min(((value + 200) // 133) * 133 - 200, 66)
 
 
 state = {
